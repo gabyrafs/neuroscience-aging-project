@@ -24,6 +24,7 @@
     .tabs { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 16px; }
     .tab-btn { border:1px solid var(--border); background:var(--surface); color:var(--text); border-radius:999px; padding:8px 14px; cursor:pointer; font-size:.9rem; }
     .tab-btn.active { border-color:var(--accent); color:var(--accent); }
+    .tab-btn:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
     .panel { display:none; background:linear-gradient(180deg,var(--surface),var(--surface-2)); border:1px solid var(--border); border-radius:16px; padding:18px; margin-bottom:14px; animation:fade .2s ease; }
     .panel.active { display:block; }
     .grid { display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); margin-top:14px; }
@@ -121,6 +122,19 @@
       btn.classList.add('active');
       btn.setAttribute('aria-selected', 'true');
       document.getElementById(btn.dataset.tab).classList.add('active');
+    }));
+
+    tabs.forEach((btn, index) => btn.addEventListener('keydown', (event) => {
+      const keys = ['ArrowRight', 'ArrowLeft', 'Home', 'End'];
+      if (!keys.includes(event.key)) return;
+      event.preventDefault();
+      let nextIndex = index;
+      if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+      if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+      if (event.key === 'Home') nextIndex = 0;
+      if (event.key === 'End') nextIndex = tabs.length - 1;
+      tabs[nextIndex].focus();
+      tabs[nextIndex].click();
     }));
 
     const progressBar = document.getElementById('progressBar');
