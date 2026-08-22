@@ -56,17 +56,17 @@
       <p class="subtitle">Neuroplasticidade do neurodesenvolvimento ao envelhecimento, com foco em prevenção funcional.</p>
     </section>
 
-    <nav class="tabs" aria-label="Abas do módulo">
-      <button class="tab-btn active" data-tab="fundamento">Fundamento/Neurobiologia</button>
-      <button class="tab-btn" data-tab="mecanismo">Mecanismo</button>
-      <button class="tab-btn" data-tab="clinica">Aplicação clínica</button>
-      <button class="tab-btn" data-tab="quiz">Caso/Quiz interativo</button>
+    <nav class="tabs" role="tablist" aria-label="Abas do módulo">
+      <button type="button" id="tab-fundamento" role="tab" aria-selected="true" aria-controls="fundamento" class="tab-btn active" data-tab="fundamento">Fundamento/Neurobiologia</button>
+      <button type="button" id="tab-mecanismo" role="tab" aria-selected="false" aria-controls="mecanismo" class="tab-btn" data-tab="mecanismo">Mecanismo</button>
+      <button type="button" id="tab-clinica" role="tab" aria-selected="false" aria-controls="clinica" class="tab-btn" data-tab="clinica">Aplicação clínica</button>
+      <button type="button" id="tab-quiz" role="tab" aria-selected="false" aria-controls="quiz" class="tab-btn" data-tab="quiz">Caso/Quiz interativo</button>
     </nav>
 
-    <section id="fundamento" class="panel active"><p>Ao longo da vida, o cérebro passa por janelas de maior plasticidade e por mudanças estruturais graduais relacionadas ao envelhecimento.</p><div class="grid"><article class="card"><span class="label">Desenvolvimento</span>Sinaptogênese e poda sináptica moldam redes eficientes.</article><article class="card"><span class="label">Envelhecimento</span>Há redução de reserva funcional, com grande variabilidade individual.</article></div></section>
-    <section id="mecanismo" class="panel"><table><thead><tr><th>Fase</th><th>Mecanismo predominante</th><th>Relevância clínica</th></tr></thead><tbody><tr><td>Infância/adolescência</td><td>Plasticidade sináptica intensa</td><td>Impacto de estímulo ambiental e educação</td></tr><tr><td>Vida adulta</td><td>Estabilização com plasticidade dependente de uso</td><td>Aprendizagem contínua e reabilitação</td></tr><tr><td>Idoso</td><td>Maior vulnerabilidade vascular e inflamatória</td><td>Risco de declínio cognitivo e fragilidade</td></tr></tbody></table></section>
-    <section id="clinica" class="panel"><p>Estratégias preventivas incluem controle de fatores vasculares, atividade física, sono adequado e engajamento cognitivo-social.</p><div class="alert"><strong>SUS e território:</strong> ações de promoção de saúde e envelhecimento ativo na APS têm alto impacto populacional.</div></section>
-    <section id="quiz" class="panel"><p><strong>Quiz:</strong> qual intervenção tem melhor evidência para preservar função cognitiva no envelhecimento saudável?</p><button type="button" aria-pressed="false" class="quiz-option" data-correct="true" data-feedback="Correto: atividade física regular, associada a controle vascular e estímulo cognitivo, tem benefício consistente.">Atividade física regular com controle de risco cardiovascular</button><button type="button" aria-pressed="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: isolamento social tende a aumentar risco de piora cognitiva e depressão.">Reduzir interações sociais para evitar sobrecarga mental</button><button type="button" aria-pressed="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: não há suporte para suspensão indiscriminada de atividades cognitivas desafiadoras.">Evitar tarefas cognitivas complexas após os 60 anos</button><div id="quizFeedback" class="feedback" aria-live="polite"></div></section>
+    <section id="fundamento" role="tabpanel" aria-labelledby="tab-fundamento" class="panel active"><p>Ao longo da vida, o cérebro passa por janelas de maior plasticidade e por mudanças estruturais graduais relacionadas ao envelhecimento.</p><div class="grid"><article class="card"><span class="label">Desenvolvimento</span>Sinaptogênese e poda sináptica moldam redes eficientes.</article><article class="card"><span class="label">Envelhecimento</span>Há redução de reserva funcional, com grande variabilidade individual.</article></div></section>
+    <section id="mecanismo" role="tabpanel" aria-labelledby="tab-mecanismo" class="panel"><table><thead><tr><th>Fase</th><th>Mecanismo predominante</th><th>Relevância clínica</th></tr></thead><tbody><tr><td>Infância/adolescência</td><td>Plasticidade sináptica intensa</td><td>Impacto de estímulo ambiental e educação</td></tr><tr><td>Vida adulta</td><td>Estabilização com plasticidade dependente de uso</td><td>Aprendizagem contínua e reabilitação</td></tr><tr><td>Idoso</td><td>Maior vulnerabilidade vascular e inflamatória</td><td>Risco de declínio cognitivo e fragilidade</td></tr></tbody></table></section>
+    <section id="clinica" role="tabpanel" aria-labelledby="tab-clinica" class="panel"><p>Estratégias preventivas incluem controle de fatores vasculares, atividade física, sono adequado e engajamento cognitivo-social.</p><div class="alert"><strong>SUS e território:</strong> ações de promoção de saúde e envelhecimento ativo na APS têm alto impacto populacional.</div></section>
+    <section id="quiz" role="tabpanel" aria-labelledby="tab-quiz" class="panel"><p><strong>Quiz:</strong> qual intervenção tem melhor evidência para preservar função cognitiva no envelhecimento saudável?</p><button type="button" aria-pressed="false" class="quiz-option" data-correct="true" data-feedback="Correto: atividade física regular, associada a controle vascular e estímulo cognitivo, tem benefício consistente.">Atividade física regular com controle de risco cardiovascular</button><button type="button" aria-pressed="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: isolamento social tende a aumentar risco de piora cognitiva e depressão.">Reduzir interações sociais para evitar sobrecarga mental</button><button type="button" aria-pressed="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: não há suporte para suspensão indiscriminada de atividades cognitivas desafiadoras.">Evitar tarefas cognitivas complexas após os 60 anos</button><div id="quizFeedback" class="feedback" aria-live="polite"></div></section>
 
     <footer>
       Aviso didático: conteúdo educacional, não substitui diretrizes clínicas, protocolos do SUS ou decisão médica supervisionada.
@@ -77,9 +77,10 @@
     const tabs = document.querySelectorAll('.tab-btn');
     const panels = document.querySelectorAll('.panel');
     tabs.forEach(btn => btn.addEventListener('click', () => {
-      tabs.forEach(b => b.classList.remove('active'));
+      tabs.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
       panels.forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
       document.getElementById(btn.dataset.tab).classList.add('active');
     }));
 
