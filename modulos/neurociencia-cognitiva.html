@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Módulo 4 · Neurociência cognitiva</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#0a0e1a; --surface:#111827; --surface-2:#1a2235; --text:#e8eaf0; --muted:#8899b0; --border:rgba(255,255,255,.07); --accent:#c97fd4; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; line-height:1.55; }
+    .wrap { width:min(1024px,92vw); margin:0 auto; }
+    header { position:sticky; top:0; z-index:10; background:rgba(10,14,26,.92); backdrop-filter: blur(8px); border-bottom:1px solid var(--border); }
+    .top { display:flex; justify-content:space-between; align-items:center; padding:12px 0; }
+    .brand { font-family:'DM Mono',monospace; color:var(--accent); font-size:.85rem; }
+    .back { color:var(--muted); text-decoration:none; }
+    .progress-track { height:4px; background:#0f1526; }
+    .progress-bar { height:100%; width:0; background:linear-gradient(90deg,var(--accent),#4fd1c5); transition:width .1s linear; }
+    .hero { padding:34px 0 20px; animation:fade .4s ease; }
+    h1 { margin:0 0 8px; font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3.6vw,2.6rem); }
+    .subtitle { margin:0; color:var(--muted); }
+    .tabs { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 16px; }
+    .tab-btn { border:1px solid var(--border); background:var(--surface); color:var(--text); border-radius:999px; padding:8px 14px; cursor:pointer; font-size:.9rem; }
+    .tab-btn.active { border-color:var(--accent); color:var(--accent); }
+    .tab-btn:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+    .panel { display:none; background:linear-gradient(180deg,var(--surface),var(--surface-2)); border:1px solid var(--border); border-radius:16px; padding:18px; margin-bottom:14px; animation:fade .2s ease; }
+    .panel.active { display:block; }
+    .grid { display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); margin-top:14px; }
+    .card { background:#1a2235; border:1px solid var(--border); border-radius:12px; padding:12px; }
+    .label { font-family:'DM Mono',monospace; color:var(--accent); font-size:.78rem; margin-bottom:6px; display:block; }
+    table { width:100%; border-collapse:collapse; margin-top:12px; font-size:.95rem; }
+    th,td { border:1px solid var(--border); padding:10px; text-align:left; vertical-align:top; }
+    th { background:#111a2e; }
+    .alert { margin-top:12px; border-left:4px solid #e8644a; background:#2a1f2a; color:#ffd9d2; border-radius:10px; padding:10px 12px; }
+    .quiz-option { display:block; width:100%; text-align:left; margin:8px 0; border:1px solid var(--border); background:#101827; color:var(--text); border-radius:10px; padding:10px; cursor:pointer; }
+    .quiz-option.correct { border-color:#6ecb8a; background:rgba(110,203,138,.12); }
+    .quiz-option.wrong { border-color:#e8644a; background:rgba(232,100,74,.12); }
+    .feedback { display:none; margin-top:12px; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#111a2b; color:var(--muted); }
+    footer { padding:10px 0 34px; color:var(--muted); font-size:.88rem; }
+    @keyframes fade { from {opacity:0; transform:translateY(5px);} to {opacity:1; transform:translateY(0);} }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap top">
+      <div class="brand">MÓDULO 4 · NEUROCIÊNCIA COGNITIVA</div>
+      <a href="../index.html" class="back">← Voltar ao hub</a>
+    </div>
+    <div class="progress-track"><div class="progress-bar" id="progressBar" role="progressbar" aria-label="Progresso de leitura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Módulo 4 · Neurociência cognitiva</h1>
+      <p class="subtitle">Bases neurais de memória, atenção, linguagem e funções executivas.</p>
+    </section>
+
+    <nav class="tabs" role="tablist" aria-label="Abas do módulo">
+      <button type="button" id="tab-fundamento" role="tab" aria-selected="true" aria-controls="fundamento" class="tab-btn active" data-tab="fundamento">Fundamento/Neurobiologia</button>
+      <button type="button" id="tab-mecanismo" role="tab" aria-selected="false" aria-controls="mecanismo" class="tab-btn" data-tab="mecanismo">Mecanismo</button>
+      <button type="button" id="tab-clinica" role="tab" aria-selected="false" aria-controls="clinica" class="tab-btn" data-tab="clinica">Aplicação clínica</button>
+      <button type="button" id="tab-quiz" role="tab" aria-selected="false" aria-controls="quiz" class="tab-btn" data-tab="quiz">Caso/Quiz interativo</button>
+    </nav>
+
+    <section id="fundamento" role="tabpanel" aria-labelledby="tab-fundamento" class="panel active"><p>Funções cognitivas emergem de redes distribuídas. Hipocampo, córtex pré-frontal e redes de linguagem cooperam para memória e tomada de decisão.</p><div class="grid"><article class="card"><span class="label">Memória</span>Codificação, consolidação e evocação dependem de conectividade temporal-frontal.</article><article class="card"><span class="label">Atenção</span>Rede frontoparietal orienta seleção de estímulos relevantes.</article></div></section>
+    <section id="mecanismo" role="tabpanel" aria-labelledby="tab-mecanismo" class="panel"><table><thead><tr><th>Domínio</th><th>Rede dominante</th><th>Manifestação de falha</th></tr></thead><tbody><tr><td>Linguagem</td><td>Perissilviana dominante</td><td>Afasias fluentes ou não fluentes</td></tr><tr><td>Função executiva</td><td>Pré-frontal dorsolateral</td><td>Perda de planejamento e inibição</td></tr><tr><td>Memória episódica</td><td>Hipocampo-córtex temporal medial</td><td>Esquecimento de fatos recentes</td></tr></tbody></table></section>
+    <section id="clinica" role="tabpanel" aria-labelledby="tab-clinica" class="panel"><p>Testes cognitivos breves orientam triagem, mas devem ser interpretados com escolaridade, contexto cultural e funcionalidade do paciente.</p><div class="alert"><strong>Atenção no Brasil:</strong> adaptações socioculturais são importantes para avaliação cognitiva justa em diferentes regiões.</div></section>
+    <section id="quiz" role="tabpanel" aria-labelledby="tab-quiz" class="panel" aria-label="Quiz interativo" ><p><strong>Caso:</strong> paciente mantém linguagem e força, mas apresenta dificuldade importante de planejar tarefas e inibir respostas impulsivas. Qual região está mais associada?</p><button type="button" role="radio" aria-checked="false" class="quiz-option" data-correct="true" data-feedback="Correto: o córtex pré-frontal dorsolateral é central para funções executivas.">Córtex pré-frontal dorsolateral</button><button type="button" role="radio" aria-checked="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: córtex occipital primário está ligado ao processamento visual inicial.">Córtex occipital primário</button><button type="button" role="radio" aria-checked="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: cerebelo contribui para cognição, mas não é o principal correlato desse perfil executivo isolado.">Hemisfério cerebelar esquerdo</button><div id="quizFeedback" class="feedback" aria-live="polite"></div></section>
+
+    <footer>
+      Aviso didático: conteúdo educacional, não substitui diretrizes clínicas, protocolos do SUS ou decisão médica supervisionada.
+    </footer>
+  </main>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.panel');
+    tabs.forEach(btn => btn.addEventListener('click', () => {
+      tabs.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    }));
+
+    tabs.forEach((btn, index) => btn.addEventListener('keydown', (event) => {
+      const keys = ['ArrowRight', 'ArrowLeft', 'Home', 'End'];
+      if (!keys.includes(event.key)) return;
+      event.preventDefault();
+      let nextIndex = index;
+      if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length;
+      if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length;
+      if (event.key === 'Home') nextIndex = 0;
+      if (event.key === 'End') nextIndex = tabs.length - 1;
+      tabs[nextIndex].focus();
+      tabs[nextIndex].click();
+    }));
+
+    const progressBar = document.getElementById('progressBar');
+    const updateProgress = () => {
+      const scrollTop = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = max > 0 ? (scrollTop / max) * 100 : 0;
+      progressBar.style.width = ratio + '%';
+      progressBar.setAttribute('aria-valuenow', Math.round(ratio).toString());
+    };
+    document.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    const options = document.querySelectorAll('#quiz .quiz-option');
+    const feedback = document.getElementById('quizFeedback');
+    options.forEach(btn => btn.addEventListener('click', () => {
+      const isCorrect = btn.dataset.correct === 'true';
+      options.forEach(o => { o.classList.remove('correct', 'wrong'); o.setAttribute('aria-checked', 'false'); });
+      btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      btn.setAttribute('aria-checked', 'true');
+      feedback.style.display = 'block';
+      feedback.textContent = btn.dataset.feedback;
+    }));
+  </script>
+</body>
+</html>
