@@ -102,9 +102,9 @@
   </section>
     <section id="quiz" class="panel">
     <p><strong>Caso:</strong> paciente de 68 anos com início súbito de fraqueza em hemicorpo direito e afasia não fluente. Qual topografia é mais provável?</p>
-    <button class="quiz-option" data-correct="false" data-feedback="Incorreto: Tronco pode causar déficits cruzados, mas afasia aponta para hemisfério dominante cortical.">Tronco encefálico dorsal</button>
-    <button class="quiz-option" data-correct="true" data-feedback="Correto: Quadro sugere lesão em hemisfério esquerdo (território da ACM), envolvendo área frontal inferior (linguagem) e fibras motoras.">Córtex frontal inferior esquerdo / território da ACM</button>
-    <button class="quiz-option" data-correct="false" data-feedback="Incorreto: Lesão cerebelar causa ataxia e dismetria, não afasia típica com hemiparesia proporcional.">Hemisfério cerebelar direito</button>
+    <button type="button" aria-pressed="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: Tronco pode causar déficits cruzados, mas afasia aponta para hemisfério dominante cortical.">Tronco encefálico dorsal</button>
+    <button type="button" aria-pressed="false" class="quiz-option" data-correct="true" data-feedback="Correto: Quadro sugere lesão em hemisfério esquerdo (território da ACM), envolvendo área frontal inferior (linguagem) e fibras motoras.">Córtex frontal inferior esquerdo / território da ACM</button>
+    <button type="button" aria-pressed="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: Lesão cerebelar causa ataxia e dismetria, não afasia típica com hemiparesia proporcional.">Hemisfério cerebelar direito</button>
     <div id="quizFeedback" class="feedback" aria-live="polite"></div>
   </section>
 
@@ -133,12 +133,13 @@
     document.addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();
 
-    const options = document.querySelectorAll('.quiz-option');
+    const options = document.querySelectorAll('#quiz .quiz-option');
     const feedback = document.getElementById('quizFeedback');
     options.forEach(btn => btn.addEventListener('click', () => {
       const isCorrect = btn.dataset.correct === 'true';
-      options.forEach(o => o.classList.remove('correct', 'wrong'));
+      options.forEach(o => { o.classList.remove('correct', 'wrong'); o.setAttribute('aria-pressed', 'false'); });
       btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      btn.setAttribute('aria-pressed', 'true');
       feedback.style.display = 'block';
       feedback.textContent = btn.dataset.feedback;
     }));

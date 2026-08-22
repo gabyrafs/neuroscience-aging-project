@@ -66,7 +66,7 @@
     <section id="fundamento" class="panel active"><p>Ao longo da vida, o cérebro passa por janelas de maior plasticidade e por mudanças estruturais graduais relacionadas ao envelhecimento.</p><div class="grid"><article class="card"><span class="label">Desenvolvimento</span>Sinaptogênese e poda sináptica moldam redes eficientes.</article><article class="card"><span class="label">Envelhecimento</span>Há redução de reserva funcional, com grande variabilidade individual.</article></div></section>
     <section id="mecanismo" class="panel"><table><thead><tr><th>Fase</th><th>Mecanismo predominante</th><th>Relevância clínica</th></tr></thead><tbody><tr><td>Infância/adolescência</td><td>Plasticidade sináptica intensa</td><td>Impacto de estímulo ambiental e educação</td></tr><tr><td>Vida adulta</td><td>Estabilização com plasticidade dependente de uso</td><td>Aprendizagem contínua e reabilitação</td></tr><tr><td>Idoso</td><td>Maior vulnerabilidade vascular e inflamatória</td><td>Risco de declínio cognitivo e fragilidade</td></tr></tbody></table></section>
     <section id="clinica" class="panel"><p>Estratégias preventivas incluem controle de fatores vasculares, atividade física, sono adequado e engajamento cognitivo-social.</p><div class="alert"><strong>SUS e território:</strong> ações de promoção de saúde e envelhecimento ativo na APS têm alto impacto populacional.</div></section>
-    <section id="quiz" class="panel"><p><strong>Quiz:</strong> qual intervenção tem melhor evidência para preservar função cognitiva no envelhecimento saudável?</p><button class="quiz-option" data-correct="true" data-feedback="Correto: atividade física regular, associada a controle vascular e estímulo cognitivo, tem benefício consistente.">Atividade física regular com controle de risco cardiovascular</button><button class="quiz-option" data-correct="false" data-feedback="Incorreto: isolamento social tende a aumentar risco de piora cognitiva e depressão.">Reduzir interações sociais para evitar sobrecarga mental</button><button class="quiz-option" data-correct="false" data-feedback="Incorreto: não há suporte para suspensão indiscriminada de atividades cognitivas desafiadoras.">Evitar tarefas cognitivas complexas após os 60 anos</button><div id="quizFeedback" class="feedback" aria-live="polite"></div></section>
+    <section id="quiz" class="panel"><p><strong>Quiz:</strong> qual intervenção tem melhor evidência para preservar função cognitiva no envelhecimento saudável?</p><button type="button" aria-pressed="false" class="quiz-option" data-correct="true" data-feedback="Correto: atividade física regular, associada a controle vascular e estímulo cognitivo, tem benefício consistente.">Atividade física regular com controle de risco cardiovascular</button><button type="button" aria-pressed="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: isolamento social tende a aumentar risco de piora cognitiva e depressão.">Reduzir interações sociais para evitar sobrecarga mental</button><button type="button" aria-pressed="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: não há suporte para suspensão indiscriminada de atividades cognitivas desafiadoras.">Evitar tarefas cognitivas complexas após os 60 anos</button><div id="quizFeedback" class="feedback" aria-live="polite"></div></section>
 
     <footer>
       Aviso didático: conteúdo educacional, não substitui diretrizes clínicas, protocolos do SUS ou decisão médica supervisionada.
@@ -93,12 +93,13 @@
     document.addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();
 
-    const options = document.querySelectorAll('.quiz-option');
+    const options = document.querySelectorAll('#quiz .quiz-option');
     const feedback = document.getElementById('quizFeedback');
     options.forEach(btn => btn.addEventListener('click', () => {
       const isCorrect = btn.dataset.correct === 'true';
-      options.forEach(o => o.classList.remove('correct', 'wrong'));
+      options.forEach(o => { o.classList.remove('correct', 'wrong'); o.setAttribute('aria-pressed', 'false'); });
       btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      btn.setAttribute('aria-pressed', 'true');
       feedback.style.display = 'block';
       feedback.textContent = btn.dataset.feedback;
     }));

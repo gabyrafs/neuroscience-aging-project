@@ -66,7 +66,7 @@
     <section id="fundamento" class="panel active"><p>Funções cognitivas emergem de redes distribuídas. Hipocampo, córtex pré-frontal e redes de linguagem cooperam para memória e tomada de decisão.</p><div class="grid"><article class="card"><span class="label">Memória</span>Codificação, consolidação e evocação dependem de conectividade temporal-frontal.</article><article class="card"><span class="label">Atenção</span>Rede frontoparietal orienta seleção de estímulos relevantes.</article></div></section>
     <section id="mecanismo" class="panel"><table><thead><tr><th>Domínio</th><th>Rede dominante</th><th>Manifestação de falha</th></tr></thead><tbody><tr><td>Linguagem</td><td>Perissilviana dominante</td><td>Afasias fluentes ou não fluentes</td></tr><tr><td>Função executiva</td><td>Pré-frontal dorsolateral</td><td>Perda de planejamento e inibição</td></tr><tr><td>Memória episódica</td><td>Hipocampo-córtex temporal medial</td><td>Esquecimento de fatos recentes</td></tr></tbody></table></section>
     <section id="clinica" class="panel"><p>Testes cognitivos breves orientam triagem, mas devem ser interpretados com escolaridade, contexto cultural e funcionalidade do paciente.</p><div class="alert"><strong>Atenção no Brasil:</strong> adaptações socioculturais são importantes para avaliação cognitiva justa em diferentes regiões.</div></section>
-    <section id="quiz" class="panel"><p><strong>Caso:</strong> paciente mantém linguagem e força, mas apresenta dificuldade importante de planejar tarefas e inibir respostas impulsivas. Qual região está mais associada?</p><button class="quiz-option" data-correct="true" data-feedback="Correto: o córtex pré-frontal dorsolateral é central para funções executivas.">Córtex pré-frontal dorsolateral</button><button class="quiz-option" data-correct="false" data-feedback="Incorreto: córtex occipital primário está ligado ao processamento visual inicial.">Córtex occipital primário</button><button class="quiz-option" data-correct="false" data-feedback="Incorreto: cerebelo contribui para cognição, mas não é o principal correlato desse perfil executivo isolado.">Hemisfério cerebelar esquerdo</button><div id="quizFeedback" class="feedback" aria-live="polite"></div></section>
+    <section id="quiz" class="panel"><p><strong>Caso:</strong> paciente mantém linguagem e força, mas apresenta dificuldade importante de planejar tarefas e inibir respostas impulsivas. Qual região está mais associada?</p><button type="button" aria-pressed="false" class="quiz-option" data-correct="true" data-feedback="Correto: o córtex pré-frontal dorsolateral é central para funções executivas.">Córtex pré-frontal dorsolateral</button><button type="button" aria-pressed="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: córtex occipital primário está ligado ao processamento visual inicial.">Córtex occipital primário</button><button type="button" aria-pressed="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: cerebelo contribui para cognição, mas não é o principal correlato desse perfil executivo isolado.">Hemisfério cerebelar esquerdo</button><div id="quizFeedback" class="feedback" aria-live="polite"></div></section>
 
     <footer>
       Aviso didático: conteúdo educacional, não substitui diretrizes clínicas, protocolos do SUS ou decisão médica supervisionada.
@@ -93,12 +93,13 @@
     document.addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();
 
-    const options = document.querySelectorAll('.quiz-option');
+    const options = document.querySelectorAll('#quiz .quiz-option');
     const feedback = document.getElementById('quizFeedback');
     options.forEach(btn => btn.addEventListener('click', () => {
       const isCorrect = btn.dataset.correct === 'true';
-      options.forEach(o => o.classList.remove('correct', 'wrong'));
+      options.forEach(o => { o.classList.remove('correct', 'wrong'); o.setAttribute('aria-pressed', 'false'); });
       btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      btn.setAttribute('aria-pressed', 'true');
       feedback.style.display = 'block';
       feedback.textContent = btn.dataset.feedback;
     }));

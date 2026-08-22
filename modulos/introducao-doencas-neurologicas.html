@@ -66,7 +66,7 @@
     <section id="fundamento" class="panel active"><p>Doenças neurológicas podem ser vasculares, degenerativas, inflamatórias, infecciosas, neoplásicas ou traumáticas. A classificação sindrômica orienta investigação.</p><div class="grid"><article class="card"><span class="label">Temporalidade</span>Agudo, subagudo e crônico ajudam a estreitar hipóteses.</article><article class="card"><span class="label">Topografia</span>Déficit focal versus encefalopatia difusa muda a prioridade diagnóstica.</article></div></section>
     <section id="mecanismo" class="panel"><table><thead><tr><th>Categoria</th><th>Mecanismo principal</th><th>Exemplo</th></tr></thead><tbody><tr><td>Vascular</td><td>Isquemia/hemorragia</td><td>AVC</td></tr><tr><td>Degenerativa</td><td>Perda neuronal progressiva</td><td>Doença de Alzheimer</td></tr><tr><td>Inflamatória</td><td>Autoimunidade desmielinizante</td><td>Esclerose múltipla</td></tr></tbody></table></section>
     <section id="clinica" class="panel"><p>Na abordagem inicial, priorize sinais de gravidade, hipóteses tempo-dependentes e encaminhamento adequado na rede de atenção.</p><div class="alert"><strong>Segurança do paciente:</strong> cefaleia súbita intensa, déficit focal agudo e rebaixamento de consciência exigem avaliação urgente.</div></section>
-    <section id="quiz" class="panel"><p><strong>Caso:</strong> paciente com déficit neurológico focal súbito há 40 minutos. Qual deve ser a prioridade?</p><button class="quiz-option" data-correct="true" data-feedback="Correto: tratar como suspeita de AVC agudo e acionar fluxo de emergência imediatamente.">Ativar protocolo de emergência para suspeita de AVC</button><button class="quiz-option" data-correct="false" data-feedback="Incorreto: observação sem protocolo pode perder janela terapêutica.">Aguardar evolução por 24 horas antes de encaminhar</button><button class="quiz-option" data-correct="false" data-feedback="Incorreto: iniciar reabilitação sem estratificação aguda não é prioridade na fase hiperaguda.">Priorizar fisioterapia domiciliar imediata</button><div id="quizFeedback" class="feedback" aria-live="polite"></div></section>
+    <section id="quiz" class="panel"><p><strong>Caso:</strong> paciente com déficit neurológico focal súbito há 40 minutos. Qual deve ser a prioridade?</p><button type="button" aria-pressed="false" class="quiz-option" data-correct="true" data-feedback="Correto: tratar como suspeita de AVC agudo e acionar fluxo de emergência imediatamente.">Ativar protocolo de emergência para suspeita de AVC</button><button type="button" aria-pressed="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: observação sem protocolo pode perder janela terapêutica.">Aguardar evolução por 24 horas antes de encaminhar</button><button type="button" aria-pressed="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: iniciar reabilitação sem estratificação aguda não é prioridade na fase hiperaguda.">Priorizar fisioterapia domiciliar imediata</button><div id="quizFeedback" class="feedback" aria-live="polite"></div></section>
 
     <footer>
       Aviso didático: conteúdo educacional, não substitui diretrizes clínicas, protocolos do SUS ou decisão médica supervisionada.
@@ -93,12 +93,13 @@
     document.addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();
 
-    const options = document.querySelectorAll('.quiz-option');
+    const options = document.querySelectorAll('#quiz .quiz-option');
     const feedback = document.getElementById('quizFeedback');
     options.forEach(btn => btn.addEventListener('click', () => {
       const isCorrect = btn.dataset.correct === 'true';
-      options.forEach(o => o.classList.remove('correct', 'wrong'));
+      options.forEach(o => { o.classList.remove('correct', 'wrong'); o.setAttribute('aria-pressed', 'false'); });
       btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      btn.setAttribute('aria-pressed', 'true');
       feedback.style.display = 'block';
       feedback.textContent = btn.dataset.feedback;
     }));

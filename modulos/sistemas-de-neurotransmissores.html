@@ -66,7 +66,7 @@
     <section id="fundamento" class="panel active"><p>Circuitos neurotransmissores modulam comportamento, cognição e tônus motor. Cada sistema tem vias anatômicas preferenciais e receptores específicos.</p><div class="grid"><article class="card"><span class="label">Dopamina</span>Relevante para controle motor, saliência e recompensa.</article><article class="card"><span class="label">Serotonina</span>Participa da regulação de humor, sono e dor.</article><article class="card"><span class="label">GABA/Glutamato</span>Principal eixo inibitório-excitatório do SNC.</article></div></section>
     <section id="mecanismo" class="panel"><table><thead><tr><th>Sistema</th><th>Mecanismo</th><th>Exemplo clínico</th></tr></thead><tbody><tr><td>Colinérgico</td><td>ACh em receptores nicotínicos/muscarínicos</td><td>Déficit relacionado a piora cognitiva</td></tr><tr><td>Dopaminérgico</td><td>Modulação de vias nigroestriatais e mesolímbicas</td><td>Sintomas motores em parkinsonismo</td></tr><tr><td>GABAérgico</td><td>Inibição sináptica por canais de Cl-</td><td>Alvo de anticonvulsivantes</td></tr></tbody></table></section>
     <section id="clinica" class="panel"><p>Na prática clínica, fármacos moduladores desses sistemas exigem monitoramento de resposta e efeitos adversos, especialmente em idosos polimedicados.</p><div class="alert"><strong>SUS:</strong> considerar disponibilidade de medicamentos na rede e adesão terapêutica no território.</div></section>
-    <section id="quiz" class="panel"><p><strong>Quiz:</strong> qual sistema está mais diretamente ligado aos sintomas motores clássicos da doença de Parkinson?</p><button class="quiz-option" data-correct="true" data-feedback="Correto: a perda dopaminérgica nigroestriatal está ligada à bradicinesia e rigidez.">Sistema dopaminérgico nigroestriatal</button><button class="quiz-option" data-correct="false" data-feedback="Incorreto: sistema serotoninérgico participa de humor e sono, mas não é o principal mecanismo motor do Parkinson.">Sistema serotoninérgico de núcleos da rafe</button><button class="quiz-option" data-correct="false" data-feedback="Incorreto: sistema colinérgico é relevante para cognição e função autonômica, não o principal eixo motor dessa síndrome.">Sistema colinérgico basal</button><div id="quizFeedback" class="feedback" aria-live="polite"></div></section>
+    <section id="quiz" class="panel"><p><strong>Quiz:</strong> qual sistema está mais diretamente ligado aos sintomas motores clássicos da doença de Parkinson?</p><button type="button" aria-pressed="false" class="quiz-option" data-correct="true" data-feedback="Correto: a perda dopaminérgica nigroestriatal está ligada à bradicinesia e rigidez.">Sistema dopaminérgico nigroestriatal</button><button type="button" aria-pressed="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: sistema serotoninérgico participa de humor e sono, mas não é o principal mecanismo motor do Parkinson.">Sistema serotoninérgico de núcleos da rafe</button><button type="button" aria-pressed="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: sistema colinérgico é relevante para cognição e função autonômica, não o principal eixo motor dessa síndrome.">Sistema colinérgico basal</button><div id="quizFeedback" class="feedback" aria-live="polite"></div></section>
 
     <footer>
       Aviso didático: conteúdo educacional, não substitui diretrizes clínicas, protocolos do SUS ou decisão médica supervisionada.
@@ -93,12 +93,13 @@
     document.addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();
 
-    const options = document.querySelectorAll('.quiz-option');
+    const options = document.querySelectorAll('#quiz .quiz-option');
     const feedback = document.getElementById('quizFeedback');
     options.forEach(btn => btn.addEventListener('click', () => {
       const isCorrect = btn.dataset.correct === 'true';
-      options.forEach(o => o.classList.remove('correct', 'wrong'));
+      options.forEach(o => { o.classList.remove('correct', 'wrong'); o.setAttribute('aria-pressed', 'false'); });
       btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      btn.setAttribute('aria-pressed', 'true');
       feedback.style.display = 'block';
       feedback.textContent = btn.dataset.feedback;
     }));
