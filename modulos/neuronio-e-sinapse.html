@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Módulo 2 · Neurônio e sinapse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#0a0e1a; --surface:#111827; --surface-2:#1a2235; --text:#e8eaf0; --muted:#8899b0; --border:rgba(255,255,255,.07); --accent:#e8a045; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; line-height:1.55; }
+    .wrap { width:min(1024px,92vw); margin:0 auto; }
+    header { position:sticky; top:0; z-index:10; background:rgba(10,14,26,.92); backdrop-filter: blur(8px); border-bottom:1px solid var(--border); }
+    .top { display:flex; justify-content:space-between; align-items:center; padding:12px 0; }
+    .brand { font-family:'DM Mono',monospace; color:var(--accent); font-size:.85rem; }
+    .back { color:var(--muted); text-decoration:none; }
+    .progress-track { height:4px; background:#0f1526; }
+    .progress-bar { height:100%; width:0; background:linear-gradient(90deg,var(--accent),#4fd1c5); transition:width .1s linear; }
+    .hero { padding:34px 0 20px; animation:fade .4s ease; }
+    h1 { margin:0 0 8px; font-family:'Playfair Display',serif; font-size:clamp(1.8rem,3.6vw,2.6rem); }
+    .subtitle { margin:0; color:var(--muted); }
+    .tabs { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 16px; }
+    .tab-btn { border:1px solid var(--border); background:var(--surface); color:var(--text); border-radius:999px; padding:8px 14px; cursor:pointer; font-size:.9rem; }
+    .tab-btn.active { border-color:var(--accent); color:var(--accent); }
+    .panel { display:none; background:linear-gradient(180deg,var(--surface),var(--surface-2)); border:1px solid var(--border); border-radius:16px; padding:18px; margin-bottom:14px; animation:fade .2s ease; }
+    .panel.active { display:block; }
+    .grid { display:grid; gap:12px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); margin-top:14px; }
+    .card { background:#1a2235; border:1px solid var(--border); border-radius:12px; padding:12px; }
+    .label { font-family:'DM Mono',monospace; color:var(--accent); font-size:.78rem; margin-bottom:6px; display:block; }
+    table { width:100%; border-collapse:collapse; margin-top:12px; font-size:.95rem; }
+    th,td { border:1px solid var(--border); padding:10px; text-align:left; vertical-align:top; }
+    th { background:#111a2e; }
+    .alert { margin-top:12px; border-left:4px solid #e8644a; background:#2a1f2a; color:#ffd9d2; border-radius:10px; padding:10px 12px; }
+    .quiz-option { display:block; width:100%; text-align:left; margin:8px 0; border:1px solid var(--border); background:#101827; color:var(--text); border-radius:10px; padding:10px; cursor:pointer; }
+    .quiz-option.correct { border-color:#6ecb8a; background:rgba(110,203,138,.12); }
+    .quiz-option.wrong { border-color:#e8644a; background:rgba(232,100,74,.12); }
+    .feedback { display:none; margin-top:12px; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:#111a2b; color:var(--muted); }
+    footer { padding:10px 0 34px; color:var(--muted); font-size:.88rem; }
+    @keyframes fade { from {opacity:0; transform:translateY(5px);} to {opacity:1; transform:translateY(0);} }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap top">
+      <div class="brand">MÓDULO 2 · NEURÔNIO E SINAPSE</div>
+      <a href="../index.html" class="back">← Voltar ao hub</a>
+    </div>
+    <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <h1>Módulo 2 · Neurônio e sinapse</h1>
+      <p class="subtitle">Potencial de ação, neurotransmissão química e bases celulares da plasticidade.</p>
+    </section>
+
+    <nav class="tabs" aria-label="Abas do módulo">
+      <button class="tab-btn active" data-tab="fundamento">Fundamento/Neurobiologia</button>
+      <button class="tab-btn" data-tab="mecanismo">Mecanismo</button>
+      <button class="tab-btn" data-tab="clinica">Aplicação clínica</button>
+      <button class="tab-btn" data-tab="quiz">Caso/Quiz interativo</button>
+    </nav>
+
+    <section id="fundamento" class="panel active">
+    <p>O neurônio mantém potencial de repouso por gradientes iônicos e canais seletivos. O potencial de ação segue despolarização rápida, repolarização e período refratário.</p>
+    <div class="grid">
+      <article class="card"><span class="label">Canal de Na+</span>Ativação rápida inicia a fase ascendente do potencial.</article>
+      <article class="card"><span class="label">Canal de K+</span>Abertura tardia favorece repolarização e pós-hiperpolarização.</article>
+      <article class="card"><span class="label">Mielina</span>Aumenta velocidade de condução por saltos entre nódulos de Ranvier.</article>
+    </div>
+    <table>
+      <thead><tr><th>Componente</th><th>Papel</th><th>Impacto clínico</th></tr></thead>
+      <tbody>
+        <tr><td>Bomba Na+/K+</td><td>Manutenção de gradientes</td><td>Falência energética agrava lesão hipóxica</td></tr>
+        <tr><td>Sinapse excitatória</td><td>Predomínio glutamatérgico</td><td>Excesso pode causar excitotoxicidade</td></tr>
+        <tr><td>Sinapse inibitória</td><td>Predomínio GABAérgico</td><td>Perda de inibição facilita crises</td></tr>
+      </tbody>
+    </table>
+  </section>
+    <section id="mecanismo" class="panel">
+    <p>Na sinapse química, entrada de Ca2+ presináptico desencadeia exocitose vesicular. Receptores ionotrópicos e metabotrópicos convertem sinal químico em resposta elétrica e metabólica.</p>
+    <div class="alert"><strong>Plasticidade:</strong> LTP/LTD dependem de timing pré-pós-sináptico e modulam aprendizagem, recuperação funcional e resposta terapêutica.</div>
+    <table>
+      <thead><tr><th>Mecanismo</th><th>Escala temporal</th><th>Exemplo</th></tr></thead>
+      <tbody>
+        <tr><td>Facilitação sináptica</td><td>Milissegundos-segundos</td><td>Aumento transitório de liberação presináptica</td></tr>
+        <tr><td>LTP</td><td>Horas-dias</td><td>Fortalecimento pós-ativação NMDA</td></tr>
+        <tr><td>LTD</td><td>Horas-dias</td><td>Enfraquecimento de conexões pouco eficientes</td></tr>
+      </tbody>
+    </table>
+  </section>
+    <section id="clinica" class="panel">
+    <p>Farmacologia neurológica atua em etapas da transmissão: síntese, liberação, receptor, recaptação e degradação.</p>
+    <div class="grid">
+      <article class="card"><span class="label">Epilepsia</span>Anticonvulsivantes podem aumentar inibição GABAérgica ou bloquear canais de Na+.</article>
+      <article class="card"><span class="label">Demências</span>Inibidores de acetilcolinesterase modulam transmissão colinérgica residual.</article>
+      <article class="card"><span class="label">SUS e adesão</span>Explicar mecanismo em linguagem acessível melhora compreensão terapêutica na prática ambulatorial.</article>
+    </div>
+  </section>
+    <section id="quiz" class="panel">
+    <p><strong>Quiz:</strong> qual evento é indispensável para a liberação de neurotransmissores na sinapse química?</p>
+    <button class="quiz-option" data-correct="false" data-feedback="<strong>Incorreto.</strong> A abertura de canais de K+ ajuda repolarização, mas não dispara exocitose vesicular diretamente.">Abertura de canais de K+ na membrana pós-sináptica</button>
+    <button class="quiz-option" data-correct="true" data-feedback="<strong>Correto.</strong> Entrada de Ca2+ no terminal pré-sináptico é o gatilho para fusão vesicular mediada por proteínas SNARE.">Entrada de Ca2+ no terminal pré-sináptico</button>
+    <button class="quiz-option" data-correct="false" data-feedback="<strong>Incorreto.</strong> A recaptação encerra/modula o sinal após a liberação, não o inicia.">Recaptação do neurotransmissor pela célula glial</button>
+    <div id="quizFeedback" class="feedback" aria-live="polite"></div>
+  </section>
+
+    <footer>
+      Aviso didático: conteúdo educacional, não substitui diretrizes clínicas, protocolos do SUS ou decisão médica supervisionada.
+    </footer>
+  </main>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.panel');
+    tabs.forEach(btn => btn.addEventListener('click', () => {
+      tabs.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    }));
+
+    const progressBar = document.getElementById('progressBar');
+    const updateProgress = () => {
+      const scrollTop = window.scrollY;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = max > 0 ? (scrollTop / max) * 100 : 0;
+      progressBar.style.width = ratio + '%';
+    };
+    document.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+
+    const options = document.querySelectorAll('.quiz-option');
+    const feedback = document.getElementById('quizFeedback');
+    options.forEach(btn => btn.addEventListener('click', () => {
+      const isCorrect = btn.dataset.correct === 'true';
+      options.forEach(o => o.classList.remove('correct', 'wrong'));
+      btn.classList.add(isCorrect ? 'correct' : 'wrong');
+      feedback.style.display = 'block';
+      feedback.innerHTML = btn.dataset.feedback;
+    }));
+  </script>
+</body>
+</html>
