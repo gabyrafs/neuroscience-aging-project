@@ -48,7 +48,7 @@
       <div class="brand">MÓDULO 2 · NEURÔNIO E SINAPSE</div>
       <a href="../index.html" class="back">← Voltar ao hub</a>
     </div>
-    <div class="progress-track"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="progress-track"><div class="progress-bar" id="progressBar" role="progressbar" aria-label="Progresso de leitura" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
   </header>
 
   <main class="wrap">
@@ -100,11 +100,11 @@
       <article class="card"><span class="label">SUS e adesão</span>Explicar mecanismo em linguagem acessível melhora compreensão terapêutica na prática ambulatorial.</article>
     </div>
   </section>
-    <section id="quiz" role="tabpanel" aria-labelledby="tab-quiz" class="panel">
+    <section id="quiz" role="tabpanel" aria-labelledby="tab-quiz" class="panel" aria-label="Quiz interativo" >
     <p><strong>Quiz:</strong> qual evento é indispensável para a liberação de neurotransmissores na sinapse química?</p>
-    <button type="button" aria-pressed="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: A abertura de canais de K+ ajuda repolarização, mas não dispara exocitose vesicular diretamente.">Abertura de canais de K+ na membrana pós-sináptica</button>
-    <button type="button" aria-pressed="false" class="quiz-option" data-correct="true" data-feedback="Correto: Entrada de Ca2+ no terminal pré-sináptico é o gatilho para fusão vesicular mediada por proteínas SNARE.">Entrada de Ca2+ no terminal pré-sináptico</button>
-    <button type="button" aria-pressed="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: A recaptação encerra/modula o sinal após a liberação, não o inicia.">Recaptação do neurotransmissor pela célula glial</button>
+    <button type="button" role="radio" aria-checked="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: A abertura de canais de K+ ajuda repolarização, mas não dispara exocitose vesicular diretamente.">Abertura de canais de K+ na membrana pós-sináptica</button>
+    <button type="button" role="radio" aria-checked="false" class="quiz-option" data-correct="true" data-feedback="Correto: Entrada de Ca2+ no terminal pré-sináptico é o gatilho para fusão vesicular mediada por proteínas SNARE.">Entrada de Ca2+ no terminal pré-sináptico</button>
+    <button type="button" role="radio" aria-checked="false" class="quiz-option" data-correct="false" data-feedback="Incorreto: A recaptação encerra/modula o sinal após a liberação, não o inicia.">Recaptação do neurotransmissor pela célula glial</button>
     <div id="quizFeedback" class="feedback" aria-live="polite"></div>
   </section>
 
@@ -143,6 +143,7 @@
       const max = document.documentElement.scrollHeight - window.innerHeight;
       const ratio = max > 0 ? (scrollTop / max) * 100 : 0;
       progressBar.style.width = ratio + '%';
+      progressBar.setAttribute('aria-valuenow', Math.round(ratio).toString());
     };
     document.addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();
@@ -151,9 +152,9 @@
     const feedback = document.getElementById('quizFeedback');
     options.forEach(btn => btn.addEventListener('click', () => {
       const isCorrect = btn.dataset.correct === 'true';
-      options.forEach(o => { o.classList.remove('correct', 'wrong'); o.setAttribute('aria-pressed', 'false'); });
+      options.forEach(o => { o.classList.remove('correct', 'wrong'); o.setAttribute('aria-checked', 'false'); });
       btn.classList.add(isCorrect ? 'correct' : 'wrong');
-      btn.setAttribute('aria-pressed', 'true');
+      btn.setAttribute('aria-checked', 'true');
       feedback.style.display = 'block';
       feedback.textContent = btn.dataset.feedback;
     }));
