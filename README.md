@@ -4,7 +4,7 @@ Repositório de materiais didáticos em **HTML autônomo** (single-file por pág
 
 ## Como usar
 
-1. Abra o arquivo `/home/runner/work/neuroscience-aging-project/neuroscience-aging-project/index.html` diretamente no navegador.
+1. Abra o arquivo `index.html` (ou `./index.html`) diretamente no navegador.
 2. Clique em um card para entrar no módulo.
 3. Navegue pelas abas internas (Fundamento/Neurobiologia, Mecanismo, Aplicação clínica, Caso/Quiz interativo).
 

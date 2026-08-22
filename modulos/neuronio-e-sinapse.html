@@ -101,9 +101,9 @@
   </section>
     <section id="quiz" class="panel">
     <p><strong>Quiz:</strong> qual evento é indispensável para a liberação de neurotransmissores na sinapse química?</p>
-    <button class="quiz-option" data-correct="false" data-feedback="<strong>Incorreto.</strong> A abertura de canais de K+ ajuda repolarização, mas não dispara exocitose vesicular diretamente.">Abertura de canais de K+ na membrana pós-sináptica</button>
-    <button class="quiz-option" data-correct="true" data-feedback="<strong>Correto.</strong> Entrada de Ca2+ no terminal pré-sináptico é o gatilho para fusão vesicular mediada por proteínas SNARE.">Entrada de Ca2+ no terminal pré-sináptico</button>
-    <button class="quiz-option" data-correct="false" data-feedback="<strong>Incorreto.</strong> A recaptação encerra/modula o sinal após a liberação, não o inicia.">Recaptação do neurotransmissor pela célula glial</button>
+    <button class="quiz-option" data-correct="false" data-feedback="Incorreto: A abertura de canais de K+ ajuda repolarização, mas não dispara exocitose vesicular diretamente.">Abertura de canais de K+ na membrana pós-sináptica</button>
+    <button class="quiz-option" data-correct="true" data-feedback="Correto: Entrada de Ca2+ no terminal pré-sináptico é o gatilho para fusão vesicular mediada por proteínas SNARE.">Entrada de Ca2+ no terminal pré-sináptico</button>
+    <button class="quiz-option" data-correct="false" data-feedback="Incorreto: A recaptação encerra/modula o sinal após a liberação, não o inicia.">Recaptação do neurotransmissor pela célula glial</button>
     <div id="quizFeedback" class="feedback" aria-live="polite"></div>
   </section>
 
@@ -139,7 +139,7 @@
       options.forEach(o => o.classList.remove('correct', 'wrong'));
       btn.classList.add(isCorrect ? 'correct' : 'wrong');
       feedback.style.display = 'block';
-      feedback.innerHTML = btn.dataset.feedback;
+      feedback.textContent = btn.dataset.feedback;
     }));
   </script>
 </body>
